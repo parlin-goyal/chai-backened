@@ -1,0 +1,15 @@
+{
+  "name": "chai-backened",
+  "version": "1.0.0",
+  "description": "a backened in at chai aur code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "backened"
+  ],
+  "author": "parlin kant goyal",
+  "license": "ISC"
+}
