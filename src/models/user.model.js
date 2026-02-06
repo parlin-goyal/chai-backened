@@ -47,11 +47,13 @@ const userSchema = new Schema(
     {timestamps:true}
 )
 
-userSchema.pre("save", async function(next) {
-    if(!this.isModified("password")) return next();
-    this.password=bcrypt.hash(this.password,10)
-    next()
-})
+userSchema.pre("save", async function () {
+    //before saving the user document, we need to check if the password field is modified or not. If it is not modified, then we can skip hashing the password again. This is important because if we hash the password again every time we save the user document, it will result in a different hash value and the user will not be able to log in with their original password.
+  if (!this.isModified("password")) return;
+
+  this.password = await bcrypt.hash(this.password, 10);
+});
+
 userSchema.methods.isPasswordCorrect= async function
 (password){
     return await bcrypt.compare(password,this.password)
